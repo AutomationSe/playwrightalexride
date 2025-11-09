@@ -36,7 +36,4 @@ export abstract class Basepage {
     await expect(this.toLocator(selector)).toBeVisible();
   }
 
-  
-
-
 }
