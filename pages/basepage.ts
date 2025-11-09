@@ -4,7 +4,16 @@ export abstract class Basepage {
   constructor(protected readonly page: Page) {}
 
   protected async gotoURL(path: string) {
-    await this.page.goto(path);
+    // Normalize path: accept full URLs, '/path', or 'path'
+    const trimmed = path.trim();
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+      await this.page.goto(trimmed);
+      return;
+    }
+
+    // Ensure it starts with '/': Playwright will resolve relative paths using baseURL from config
+    const resolvedPath = trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+    await this.page.goto(resolvedPath);
   }
 
   

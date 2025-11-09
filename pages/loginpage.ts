@@ -13,4 +13,12 @@ export class Loginpage extends Basepage {
     await this.basePageFill('#password', password);
     await this.basePageclick("(//button[@type='submit'])[1]");
   }
+
+
+  async assertfailusername(){
+    await this.basePageexpectvisible(this.page.locator('#flash'));
+    await expect(this.page.locator('#flash')).toContainText('Your username is invalid');
+
+  }
+
 }
