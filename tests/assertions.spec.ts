@@ -43,4 +43,5 @@ test("Multiple soft assertions with one Hard assertions", async({page})=>{
     await expect.soft(page.getByLabel('Username')).toBeVisible();
 
     await expect(page.getByLabel('Password')).toBeVisible();
+     
 })
